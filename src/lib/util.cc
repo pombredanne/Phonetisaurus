@@ -158,7 +158,7 @@ DEFINE_bool   (help, false, "show usage information");
 void PhonetisaurusSetFlags (const char* usage, int* argc, char*** argv,
 			    bool remove_flags) {
   //Workaround for Apple's. It just skips all the options processing. 
-#ifdef DARWIN
+#if defined(__APPLE__) && defined(__MACH__)
   SetFlags (usage, argc, argv, remove_flags);
 #else
   int index = 1;
@@ -242,7 +242,7 @@ void PhonetisaurusSetFlags (const char* usage, int* argc, char*** argv,
     //Fake this
     cout << "  --help: type = bool, default = false" << endl;
     cout << "  show usage information" << endl;
-    exit(1);
+    exit (0);
   }
 #endif
 }
